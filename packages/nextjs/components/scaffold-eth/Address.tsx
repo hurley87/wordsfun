@@ -8,9 +8,9 @@ import { hardhat } from "viem/chains";
 import { normalize } from "viem/ens";
 import { useEnsAvatar, useEnsName } from "wagmi";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
-import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
+import { createIcon } from 'opepen-standard';
 
 type AddressProps = {
   address?: AddressType;
@@ -90,14 +90,15 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
     displayAddress = checkSumAddress;
   }
 
+  const canvas = createIcon({
+    seed: checkSumAddress,
+    size: (blockieSizeMap[size] * 24) / blockieSizeMap["base"]  ,
+  });
+
   return (
     <div className="flex items-center">
       <div className="flex-shrink-0">
-        <BlockieAvatar
-          address={checkSumAddress}
-          ensImage={ensAvatar}
-          size={(blockieSizeMap[size] * 24) / blockieSizeMap["base"]}
-        />
+        <img src={canvas.toDataURL()} alt="Opepen Avatar" className="rounded-full" />
       </div>
       {disableAddressLink ? (
         <span className={`ml-1.5 text-${size} font-normal`}>{displayAddress}</span>

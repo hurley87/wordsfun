@@ -47,6 +47,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@chainlink/contracts": "^1.2.0",
     "@openzeppelin/contracts": "^4.8.1",
     "@typechain/ethers-v6": "^0.5.1",
     "base64-sol": "^1.1.0",

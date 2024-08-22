@@ -12,26 +12,21 @@ const YourLoogies: NextPage = () => {
   const [yourLoogies, setYourLoogies] = useState<any[]>();
   const [loadingLoogies, setLoadingLoogies] = useState(true);
 
-  const { data: price } = useScaffoldReadContract({
-    contractName: "YourCollectible",
-    functionName: "price",
-  });
-
   const { data: totalSupply } = useScaffoldReadContract({
-    contractName: "YourCollectible",
+    contractName: "WordsFun",
     functionName: "totalSupply",
   });
 
   const { data: balance } = useScaffoldReadContract({
-    contractName: "YourCollectible",
+    contractName: "WordsFun",
     functionName: "balanceOf",
     args: [connectedAddress],
   });
 
-  const { writeContractAsync } = useScaffoldWriteContract("YourCollectible");
+  const { writeContractAsync } = useScaffoldWriteContract("WordsFun");
 
   const { data: contract } = useScaffoldContract({
-    contractName: "YourCollectible",
+    contractName: "WordsFun",
   });
 
   useEffect(() => {
@@ -67,33 +62,9 @@ const YourLoogies: NextPage = () => {
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="relative w-48 h-48 -m-12">
-          <Image alt="Loogie" className="cursor-pointer" fill src="/your-loogie.svg" />
-        </div>
-        <div className="px-5">
-          <h1 className="text-center">
-            <span className="block text-4xl font-bold">Your Loogies</span>
-          </h1>
-          <div className="flex flex-col justify-center items-center mt-4 space-x-2">
-            <button
-              onClick={async () => {
-                try {
-                  await writeContractAsync({
-                    functionName: "mintItem",
-                    value: price,
-                  });
-                } catch (e) {
-                  console.error(e);
-                }
-              }}
-              className="btn btn-primary"
-              disabled={!connectedAddress || !price}
-            >
-              Mint Now for {price ? (+formatEther(price)).toFixed(6) : "-"} ETH
-            </button>
-            <p>{Number(3728n - (totalSupply || 0n))} Loogies left</p>
-          </div>
-        </div>
+        <h1 className="text-center">
+          <span className="block text-4xl font-bold">Your Letters</span>
+        </h1> 
 
         <div className="flex-grow bg-base-300 w-full mt-4 p-8">
           <div className="flex justify-center items-center space-x-2">

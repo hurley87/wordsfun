@@ -20,13 +20,13 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "All Loogies",
-    href: "/loogies",
+    label: "All Letters",
+    href: "/letters",
     icon: <FaceSmileIcon className="h-4 w-4" />,
   },
   {
-    label: "Your Loogies",
-    href: "/your-loogies",
+    label: "Your Letters",
+    href: "/your-letters",
     icon: <BriefcaseIcon className="h-4 w-4" />,
   },
   {
